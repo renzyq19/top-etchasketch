@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --boxes-per-side: 16;
+}
+
+body {
+  inset: 0;
+  position: absolute;
+  display: grid;
+  place-items: center;
+}
+
+#root {
+  --side-length: 500px;
+  width: var(--side-length);
+  height: var(--side-length);
+  display: flex;
+  flex-wrap: wrap;
+  outline: 2px red solid;
+}
+
+#root > * {
+  width: calc(var(--side-length) / var(--boxes-per-side));
+  height: calc(var(--side-length) / var(--boxes-per-side));
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all ease 200ms;
+}
+
+#root > *.active {
+  background-color: var(--box-color, black);
+}
+
+#reset,
+#rainbow {
+  cursor: pointer;
+  padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+  place-items: center;
+}
+.size_slider {
+}
