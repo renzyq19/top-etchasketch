@@ -6,6 +6,25 @@
 
 :root {
   --boxes-per-side: 16;
+  --box-size: 30px;
+  --shake-size: 20px;
+  font-family: helvetica, arial, sans;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(var(--shake-size));
+  }
+  50% {
+    transform: translateX(calc(0-var(--shake-size)));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shaking {
+  animation: 50ms 5 alternate shake;
 }
 
 body {
@@ -13,20 +32,35 @@ body {
   position: absolute;
   display: grid;
   place-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
 }
 
 #root {
-  --side-length: 500px;
-  width: var(--side-length);
-  height: var(--side-length);
+  width: calc(var(--box-size) * var(--boxes-per-side));
+  height: calc(var(--box-size) * var(--boxes-per-side));
   display: flex;
   flex-wrap: wrap;
-  outline: 2px red solid;
+  position: relative;
+  grid-row: 2 / 5;
+  grid-column: 2 / 5;
+}
+#root::after {
+  content: "";
+  position: absolute;
+  inset: -75px;
+  background-color: black;
+  z-index: -1;
+  border-radius: 5px;
+  border: 50px solid #ee0011;
+  box-shadow: 10px 10px 4px 4px rgba(0, 0, 0, 0.4),
+    20px 20px 20px 20px rgba(0, 0, 0, 0.1);
 }
 
 #root > * {
-  width: calc(var(--side-length) / var(--boxes-per-side));
-  height: calc(var(--side-length) / var(--boxes-per-side));
+  width: var(--box-size);
+  height: var(--box-size);
+  background-color: white;
   outline: 1px solid rgba(0, 0, 0, 0.1);
   transition: all ease 200ms;
 }
@@ -43,9 +77,21 @@ body {
 }
 
 .options {
+  height: 100%;
+
+  grid-row: 2 / span 3;
+  grid-column: 1 / span 1;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   gap: 10px;
-  place-items: center;
 }
 .size_slider {
+  display: flex;
+  flex-direction: column;
+}
+.size_slider > label {
+  display: block;
+  margin-bottom: 1em;
 }

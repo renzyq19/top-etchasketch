@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>Etcha Sketch</title>
     <meta charset="UTF-8" />
     <script type="module" src="./module.js" defer></script>
     <script type="text/javascript" src="./script.js" defer></script>
@@ -10,13 +10,22 @@
   <body>
     <div id="root"></div>
     <div class="options">
-      <div id="rainbow">Rainbow?</div>
       <div id="reset">Reset</div>
+      <div id="rainbow">Rainbow?</div>
       <input type="color" />
       <div class="size_slider">
-        <label for="size">16</label>
-        <input type="range" name="size" min="8" max="64" step="8" value="16" />
+        <label for="size">Boxes Per Side: 16</label>
+        <input
+          orient="vertical"
+          type="range"
+          name="size"
+          min="8"
+          max="64"
+          step="8"
+          value="16"
+        />
       </div>
     </div>
+    <h1>Etcha Sketch</h1>
   </body>
 </html>
