@@ -16,22 +16,23 @@ function makeBoxes() {
   document.documentElement.style.setProperty("--boxes-per-side", size);
   document.documentElement.style.setProperty(
     "--box-size",
-    `${Math.floor(500 / size)}px`
+    `${Math.floor(640 / size)}px`
   );
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
       const el = document.createElement("div");
+      el.style.opacity = 0;
       el.addEventListener(
         "mousemove",
         () => {
-          el.classList.add("active");
+          el.style.opacity = parseFloat(el.style.opacity) + 0.35;
           el.style.setProperty(
             "--box-color",
             rainbowFlag ? hsl(3 * hue++, 100, 50) : document.currentColor
           );
         },
         {
-          once: true,
+          //    once: true,
         }
       );
       el.classList.add(`x${i}y${j}`);
